@@ -12,3 +12,10 @@ export const materialTypes = {
 	ILIOTIUM: 'ILIOTIUM',
 	LEVANTIUM: 'LEVANTIUM'
 }
+
+export const attributeTypes = {
+	STRENGTH: 'STRENGTH',
+	DEFENCE: 'DEFENCE',
+	WILLPOWER: 'WILLPOWER',
+	ENDURANCE: 'ENDURANCE'
+}

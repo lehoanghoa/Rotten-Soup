@@ -6,8 +6,8 @@ import { Game } from '#/Game.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { addPrefix } from '#/utils/HelperFunctions.js'
 import Item from '#/entities/items/Item.js'
+import { materialTypes, attributeTypes } from '#/utils/Constants.js'
 // Weapons
-import { materialTypes } from '#/utils/Constants.js'
 import { Sword } from '#/entities/items/weapons/Sword.js'
 
 import { createBow } from '#/entities/items/weapons/ranged/Bow.js'
@@ -54,10 +54,14 @@ export default class Player extends Actor {
 				/* current stats */
 				xp: 50,
 				level: 1,
+				attributePoints: 0,
 				hp: 50,
 				mana: 18,
 				str: 1,
 				def: 1,
+				endurance: 1,
+				willpower: 1,
+
 				/* Per-turn effects */
 				hpRecovery: 1,
 				manaRecovery: 2.5,
@@ -205,16 +209,30 @@ export default class Player extends Actor {
 		return xp_levels[this.cb.level] - this.cb.xp
 	}
 
+	levelUpAttribute(skill) {
+		const { DEFENCE, STRENGTH, ENDURANCE, WILLPOWER } = attributeTypes
+		if (this.attributePoints > 0) {
+			switch (skill) {
+				case DEFENCE:
+					this.cb.def++
+				case STRENGTH:
+					this.cb.str++
+				case ENDURANCE:
+					this.cb.endurance++
+				case WILLPOWER:
+					this.cb.willpower++
+				default:
+					this.attributePoints--
+			}
+		}
+	}
+
 	level_up() {
 		this.cb.level += 1
 		Game.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up')
-		if (this.cb.level % 2 === 0) {
-			Game.log('Your strength and health have improved.', 'level_up')
-			this.cb.maxhp += 5
-			this.cb.str += 1
-		}
 		this.cb.hp = this.cb.maxhp
 		this.cb.mana = this.cb.maxmana
+		this.cb.attributePoints++
 	}
 
 	act() {
