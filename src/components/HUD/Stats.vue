@@ -1,18 +1,14 @@
 <template>
 	<v-container fluid class="pl-1">
 		<!-- Level -->
-		<v-layout justify-space-between align-center>
-			<div>
+		<v-layout>
+			<v-flex md6>
 				<b>Level</b>
-			</div>
-			<div>
+			</v-flex>
+			<v-flex md3>
 				{{getLevel()}}
-			</div>
-			<div>
-				<v-btn class="extra-small" flat icon color="green">
-					<v-icon small>add</v-icon>
-				</v-btn>
-			</div>
+			</v-flex>
+
 		</v-layout>
 		<!-- Strength -->
 		<v-layout>
@@ -20,6 +16,11 @@
 				<b>Strength</b>
 			</v-flex>
 			<v-flex md3>{{getStrength()}}</v-flex>
+			<v-flex md3>
+				<v-btn class="extra-small" flat icon color="green" style="margin: 0px;">
+					<v-icon small>add</v-icon>
+				</v-btn>
+			</v-flex>
 		</v-layout>
 		<!-- Defence -->
 		<v-layout row>
@@ -27,6 +28,11 @@
 				<b>Defence</b>
 			</v-flex>
 			<v-flex md3>{{getDefence()}}</v-flex>
+			<v-flex md3>
+				<v-btn class="extra-small" flat icon color="green" style="margin: 0px;">
+					<v-icon small>add</v-icon>
+				</v-btn>
+			</v-flex>
 		</v-layout>
 		<!-- Damage -->
 		<v-layout>
@@ -111,8 +117,8 @@ export default {
 </script>
 <style>
 .extra-small {
-	width: 24px;
-	height: 24px;
+	width: 18px;
+	height: 18px;
 }
 </style>
 
